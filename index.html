@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Cost Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Vacation Cost Calculator</h1>
+    <p>Calculate the projected expenses of your vacations over the next 30 years.</p>
+    <label for="name">Your Name (optional):</label><br>
+    <input type="text" id="name" placeholder="Enter your name"><br>
+
+    <label for="days">Days of vacation per year:</label><br>
+    <input type="number" id="days" placeholder="Number of vacation days"><br>
+
+    <label for="costPerNight">Cost per night:</label><br>
+    <input type="number" id="costPerNight" placeholder="Cost per night"><br>
+
+    <label for="foodPerDay">Cost of food per day:</label><br>
+    <input type="number" id="foodPerDay" placeholder="Daily food cost"><br>
+
+    <label for="entertainmentPerDay">Cost of entertainment per day:</label><br>
+    <input type="number" id="entertainmentPerDay" placeholder="Daily entertainment cost"><br>
+
+    <button onclick="calculateCosts()">Calculate Costs</button>
+    <button onclick="window.print()">Print Results</button>
+
+    <div class="result" id="result"></div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
