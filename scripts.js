@@ -1,53 +1,29 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #007bff; /* Blue background */
-    color: white; /* White text color */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+function calculateCosts() {
+    const name = document.getElementById('name').value || 'Guest';
+    const days = parseInt(document.getElementById('days').value, 10);
+    const costPerNight = parseFloat(document.getElementById('costPerNight').value);
+    const foodPerDay = parseFloat(document.getElementById('foodPerDay').value);
+    const entertainmentPerDay = parseFloat(document.getElementById('entertainmentPerDay').value);
+    const inflationRate = parseFloat(document.getElementById('inflationRate').value) / 100;
+
+    let yearlyCost = days * (costPerNight + foodPerDay + entertainmentPerDay);
+    let report = `<h2>Cost Projection for ${name}</h2><ul>`;
+
+    // Display the initial costs for the first year
+    report += generateCostDisplay(1, yearlyCost);
+
+    for (let year = 2; year <= 30; year++) {
+        yearlyCost *= (1 + inflationRate); // Apply the inflation rate to modify the yearly cost
+        if (year % 5 === 0 || year === 30) { // Display results every 5 years and in the 30th year
+            report += generateCostDisplay(year, yearlyCost);
+        }
+    }
+
+    report += `</ul>`;
+    document.getElementById('result').innerHTML = report;
 }
 
-.container {
-    width: 100%;
-    max-width: 360px; /* Suitable for mobile screens */
-    padding: 20px;
-    background-color: #333; /* Slightly dark background for the container */
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-input[type="text"], input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: white;
-    color: black;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: red;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
+function generateCostDisplay(year, yearlyCost) {
+    const monthlyCost = yearlyCost / 12;
+    return `<li>Year ${year}: Total Annual Cost: $${yearlyCost.toFixed(2)}, Monthly Cost: $${monthlyCost.toFixed(2)}</li>`;
 }
